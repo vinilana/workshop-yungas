@@ -1,4 +1,4 @@
-import type { CreateFranchiseDTO, FranchiseStatus } from "./types.js";
+import type { CreateFranchiseDTO, CreateCollaboratorDTO, FranchiseStatus } from "./types.js";
 
 export interface SeedFranchise extends CreateFranchiseDTO {
   status: FranchiseStatus;
@@ -104,5 +104,66 @@ export const SEED_FRANCHISES: SeedFranchise[] = [
     city: "Recife",
     state: "PE",
     status: "pending",
+  },
+];
+
+export interface SeedCollaborator extends CreateCollaboratorDTO {}
+
+export const SEED_COLLABORATORS: SeedCollaborator[] = [
+  {
+    name: "Maria Fernanda Costa",
+    email: "maria.costa@franquiacentro.com.br",
+    phone: "(11) 91234-5678",
+    role: "Gerente",
+    franchiseId: 1,
+  },
+  {
+    name: "João Pedro Almeida",
+    email: "joao.almeida@franquiacentro.com.br",
+    phone: "(11) 92345-6789",
+    role: "Atendente",
+    franchiseId: 1,
+  },
+  {
+    name: "Camila Ribeiro Santos",
+    email: "camila.santos@franquiacopa.com.br",
+    phone: "(21) 93456-7890",
+    role: "Subgerente",
+    franchiseId: 2,
+  },
+  {
+    name: "Lucas Oliveira Neto",
+    email: "lucas.neto@franquiasavassi.com.br",
+    phone: "(31) 94567-8901",
+    role: "Supervisor",
+    franchiseId: 3,
+  },
+  {
+    name: "Beatriz Lima Duarte",
+    email: "beatriz.duarte@franquiabatel.com.br",
+    phone: "(41) 95678-9012",
+    role: "Caixa",
+    franchiseId: 4,
+  },
+  {
+    name: "Rafael Mendes Souza",
+    email: "rafael.souza@franquiamoinhos.com.br",
+    phone: "(51) 96789-0123",
+    role: "Analista Financeiro",
+    franchiseId: 5,
+  },
+  {
+    name: "Isabela Torres Vieira",
+    email: "isabela.vieira@franquiapituba.com.br",
+    phone: "(71) 97890-1234",
+    role: "Auxiliar Administrativo",
+    franchiseId: 6,
+  },
+  {
+    name: "Gustavo Henrique Prado",
+    email: "gustavo.prado@franquiaaldeota.com.br",
+    phone: "(85) 98901-2345",
+    role: "Coordenador de Operações",
+    franchiseId: 7,
   },
 ];

@@ -8,7 +8,8 @@
 
 	const navItems = [
 		{ href: '/dashboard', label: 'Dashboard' },
-		{ href: '/franchises/new', label: 'New Franchise' }
+		{ href: '/franchises/new', label: 'New Franchise' },
+		{ href: '/collaborators', label: 'Collaborators' }
 	];
 
 	function isActive(path: string): boolean {

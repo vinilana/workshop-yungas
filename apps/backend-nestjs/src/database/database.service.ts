@@ -28,6 +28,20 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
       )
     `);
+
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS collaborators (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        email TEXT NOT NULL,
+        phone TEXT,
+        role TEXT NOT NULL,
+        franchise_id INTEGER NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (franchise_id) REFERENCES franchises(id) ON DELETE CASCADE
+      )
+    `);
   }
 
   onModuleDestroy() {

@@ -3,6 +3,9 @@ import type {
 	Franchise,
 	CreateFranchiseDTO,
 	UpdateFranchiseDTO,
+	Collaborator,
+	CreateCollaboratorDTO,
+	UpdateCollaboratorDTO,
 	ApiResponse,
 	ApiErrorResponse
 } from '@franchise/shared';
@@ -77,6 +80,40 @@ export async function updateFranchise(
 
 export async function deleteFranchise(id: number | string): Promise<void> {
 	return request<void>(API_ROUTES.FRANCHISE_BY_ID(id), {
+		method: 'DELETE'
+	});
+}
+
+// Collaborator API
+
+export async function getCollaborators(search?: string): Promise<ApiResponse<Collaborator[]>> {
+	const query = search ? `?search=${encodeURIComponent(search)}` : '';
+	return request<ApiResponse<Collaborator[]>>(`${API_ROUTES.COLLABORATORS}${query}`);
+}
+
+export async function getCollaborator(id: number | string): Promise<ApiResponse<Collaborator>> {
+	return request<ApiResponse<Collaborator>>(API_ROUTES.COLLABORATOR_BY_ID(id));
+}
+
+export async function createCollaborator(data: CreateCollaboratorDTO): Promise<ApiResponse<Collaborator>> {
+	return request<ApiResponse<Collaborator>>(API_ROUTES.COLLABORATORS, {
+		method: 'POST',
+		body: JSON.stringify(data)
+	});
+}
+
+export async function updateCollaborator(
+	id: number | string,
+	data: UpdateCollaboratorDTO
+): Promise<ApiResponse<Collaborator>> {
+	return request<ApiResponse<Collaborator>>(API_ROUTES.COLLABORATOR_BY_ID(id), {
+		method: 'PATCH',
+		body: JSON.stringify(data)
+	});
+}
+
+export async function deleteCollaborator(id: number | string): Promise<void> {
+	return request<void>(API_ROUTES.COLLABORATOR_BY_ID(id), {
 		method: 'DELETE'
 	});
 }

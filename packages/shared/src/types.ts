@@ -46,3 +46,31 @@ export interface ApiErrorResponse {
   message: string;
   statusCode: number;
 }
+
+export interface Collaborator {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  role: string;
+  franchiseId: number;
+  franchiseName: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateCollaboratorDTO {
+  name: string;
+  email: string;
+  phone: string;
+  role: string;
+  franchiseId: number;
+}
+
+export interface UpdateCollaboratorDTO {
+  name?: string;
+  email?: string;
+  phone?: string;
+  role?: string;
+  franchiseId?: number;
+}
