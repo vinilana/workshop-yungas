@@ -18,6 +18,12 @@ This directory contains ready-to-customize playbooks for AI agents collaborating
 - [Database Specialist](./database-specialist.md) — Design and optimize database schemas
 - [Mobile Specialist](./mobile-specialist.md) — Develop native and cross-platform mobile applications
 
+## Development Rules
+
+- **New features** must be implemented in the **active** projects only: `apps/backend-nestjs` (NestJS 10.4) and `apps/frontend-svelte` (SvelteKit 2.0 / Svelte 5).
+- **Legacy projects** (`apps/backend-express` and `apps/frontend-nextjs`) are in maintenance mode. They receive **critical bug fixes only** — no new features.
+- Always start new work by defining types in `packages/shared` before touching backend or frontend code.
+
 ## How To Use These Playbooks
 1. Pick the agent that matches your task.
 2. Enrich the template with project-specific context or links.

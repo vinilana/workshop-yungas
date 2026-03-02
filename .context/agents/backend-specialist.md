@@ -10,21 +10,23 @@ scaffoldVersion: "2.0.0"
 ---
 ## Mission
 
-The Backend Specialist designs and implements server-side features for the Franchise Manager. Engage this agent for adding new API endpoints, modifying business logic, optimizing database queries, or configuring backend middleware. This agent works across both the Express and NestJS implementations.
+The Backend Specialist designs and implements server-side features for the Franchise Manager. Engage this agent for adding new API endpoints, modifying business logic, optimizing database queries, or configuring backend middleware. This agent's primary focus is the **NestJS backend** (`apps/backend-nestjs`), which is the active project for all new development.
+
+> **Legacy notice:** `apps/backend-express` (Express.js 4.21) is a legacy project in maintenance mode. It may be used as read-only reference for existing patterns, but all new endpoints, services, and modules must be implemented in NestJS only. No new features should be added to the Express backend.
 
 ## Responsibilities
 
-- Implement new CRUD endpoints and business logic in both Express and NestJS backends.
+- Implement new CRUD endpoints and business logic in the **NestJS backend** (`apps/backend-nestjs`).
 - Write and optimize SQL queries for the SQLite `franchises` table.
-- Configure middleware (CORS, auth, error handling, validation).
-- Maintain parity between Express route handlers and NestJS controller/service methods.
-- Add input validation using `class-validator` (NestJS) and manual checks (Express).
-- Handle database schema migrations and seed data updates.
+- Configure middleware (CORS, auth, error handling, validation) in NestJS.
+- Add input validation using `class-validator` in NestJS.
+- Handle database schema migrations and seed data updates in the NestJS `DatabaseService`.
+- Maintain the Express backend only for critical bug fixes (no new features).
 
 ## Best Practices
 
 - Always use parameterized queries (prepared statements) to prevent SQL injection.
-- Keep Express route handlers and NestJS service methods functionally equivalent.
+- All new backend work targets NestJS only. Do NOT add new features to the Express backend.
 - Wrap all responses in `ApiResponse<T>` or `ApiErrorResponse` envelopes.
 - Use proper HTTP status codes: 200 (success), 201 (created), 400 (bad request), 401 (unauthorized), 404 (not found), 500 (server error).
 - Add new types/DTOs to `packages/shared/src/types.ts`, not in backend code.
@@ -41,11 +43,11 @@ The Backend Specialist designs and implements server-side features for the Franc
 
 ## Repository Starting Points
 
-- `apps/backend-express/src/` — Express server, routes, middleware, database setup
-- `apps/backend-nestjs/src/` — NestJS modules, controllers, services, guards
-- `packages/shared/src/` — Shared types, DTOs, constants
-- `apps/backend-express/src/routes/franchises.ts` — Express CRUD route handlers
+- `apps/backend-nestjs/src/` — NestJS modules, controllers, services, guards (primary, active)
 - `apps/backend-nestjs/src/franchise/` — NestJS franchise module (controller + service)
+- `packages/shared/src/` — Shared types, DTOs, constants
+- `apps/backend-express/src/` — Legacy Express server (read-only reference)
+- `apps/backend-express/src/routes/franchises.ts` — Legacy Express CRUD route handlers (read-only reference)
 
 ## Key Files
 
@@ -76,11 +78,11 @@ The Backend Specialist designs and implements server-side features for the Franc
 
 ## Collaboration Checklist
 
-1. Verify the Express and NestJS implementations stay functionally equivalent.
-2. Test both backends with the same API calls to ensure consistent responses.
-3. Update shared types in `packages/shared` if adding new fields or endpoints.
-4. Rebuild shared package (`npm run build -w packages/shared`) after type changes.
-5. Update seed data if schema changes.
+1. Implement and test all new endpoints in the NestJS backend only.
+2. Update shared types in `packages/shared` if adding new fields or endpoints.
+3. Rebuild shared package (`npm run build -w packages/shared`) after type changes.
+4. Update seed data if schema changes.
+5. Do NOT add new features to the legacy Express backend.
 
 ## Hand-off Notes
 

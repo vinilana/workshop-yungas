@@ -38,6 +38,7 @@ Activate this skill when staging changes and preparing a git commit. It generate
    - Keep the subject line under 72 characters
    - Use imperative mood: "add" not "added", "fix" not "fixed"
    - Add a body if the change needs explanation (separated by blank line)
+5. **Legacy project commits**: When committing changes to legacy projects (`backend-express`, `frontend-nextjs`), the commit type should typically be `fix` (critical bug fixes only). If you find yourself writing `feat` for a legacy project scope, reconsider — new features belong in the active stack (NestJS/SvelteKit).
 
 ## Examples
 

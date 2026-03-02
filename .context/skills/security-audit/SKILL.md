@@ -51,6 +51,11 @@ Activate this skill when performing a security review of code changes or the ove
 - [ ] No sensitive data in frontend source code or browser console logs.
 - [ ] Database files stored outside the web root.
 
+### Legacy Project Awareness
+- [ ] Security fixes in legacy projects (Express/Next.js) are still required — security issues are always critical.
+- [ ] New security features (rate limiting, enhanced validation, etc.) should be implemented in NestJS/SvelteKit only.
+- [ ] Audit both active and legacy projects, but prioritize remediation in the active stack (NestJS/SvelteKit).
+
 ## Examples
 
 **Finding report format:**

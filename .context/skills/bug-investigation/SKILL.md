@@ -40,6 +40,7 @@ Activate this skill when investigating a bug report, error message, or unexpecte
 6. **Prevent regression**:
    - Suggest a test case that would catch this bug.
    - Update documentation if the bug revealed a misunderstanding.
+7. **Legacy project triage**: For bugs in legacy projects (Express/Next.js), only critical issues warrant fixes. Non-critical bugs should be documented for reference but not fixed, as these projects are in maintenance-only mode. Prioritize investigating and fixing bugs in the active stack (NestJS/SvelteKit).
 
 ## Examples
 

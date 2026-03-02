@@ -34,6 +34,7 @@ Activate this skill when generating test cases for existing or new code. Use it 
    - **Auth errors**: Missing/invalid tokens return 401.
    - **Edge cases**: Empty search, special characters, max-length strings.
 5. **Name tests descriptively**: `it('should return 404 when franchise does not exist')`.
+6. **Legacy project policy**: Prioritize writing tests for the active stack (NestJS backend, SvelteKit frontend). Do not write new tests for legacy projects (Express/Next.js) unless fixing a critical bug that requires a regression test. Test investment should go toward NestJS and SvelteKit.
 
 ## Examples
 

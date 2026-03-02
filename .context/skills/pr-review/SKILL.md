@@ -43,6 +43,7 @@ Activate this skill when reviewing a pull request. It provides a structured chec
    - Separate blocking issues from suggestions.
    - Include code examples for suggested improvements.
    - Approve, request changes, or leave comments.
+8. **Legacy project gate**: If the PR introduces new features or enhancements to legacy projects (`apps/backend-express` or `apps/frontend-nextjs`), flag it as a blocking issue. Only critical bug fixes and security patches are permitted in legacy projects. New development must target NestJS and SvelteKit.
 
 ## Examples
 

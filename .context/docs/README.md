@@ -1,5 +1,17 @@
 # Documentation Index
 
+## Project Classification
+
+| Application | Directory | Framework | Status |
+|---|---|---|---|
+| Backend (Express) | `apps/backend-express` | Express.js 4.21 | **Legacy** -- maintenance only |
+| Backend (NestJS) | `apps/backend-nestjs` | NestJS 10.4 | **Active** -- all new development |
+| Frontend (Next.js) | `apps/frontend-nextjs` | Next.js 14 / React 18 | **Legacy** -- maintenance only |
+| Frontend (SvelteKit) | `apps/frontend-svelte` | SvelteKit 2.0 / Svelte 5 | **Active** -- all new development |
+| Shared Package | `packages/shared` | TypeScript | **Active** -- shared by all apps |
+
+> **All new development targets NestJS + SvelteKit. Express.js and Next.js are legacy (maintenance only).**
+
 Welcome to the repository knowledge base. Start with the project overview, then dive into specific guides as needed.
 
 ## Core Guides

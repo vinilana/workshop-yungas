@@ -17,10 +17,11 @@ The Code Reviewer evaluates code changes for quality, consistency, and adherence
 - Review code changes for TypeScript type safety and strict mode compliance.
 - Verify adherence to established patterns: DTO validation, API response envelopes, module structure.
 - Check for security issues: SQL injection, exposed secrets, missing auth checks.
-- Ensure consistency between Express and NestJS implementations.
+- Ensure consistency within the active NestJS backend and SvelteKit frontend.
 - Validate UI components follow responsive design patterns (mobile cards, desktop tables).
 - Flag missing error handling, edge cases, or potential null pointer issues.
 - Check that shared types are used correctly across all consumers.
+- **Flag any PR that adds new features to legacy projects** (`apps/backend-express` or `apps/frontend-nextjs`). New features must only go to the active projects (NestJS + SvelteKit). Only critical bug fixes are permitted in legacy apps.
 
 ## Best Practices
 
@@ -90,9 +91,10 @@ The Code Reviewer evaluates code changes for quality, consistency, and adherence
 
 1. Read the full diff before commenting.
 2. Check type safety across workspace boundaries.
-3. Verify both backends handle the same edge cases.
+3. Verify the NestJS backend handles edge cases correctly.
 4. Flag security concerns (auth bypass, injection, exposed secrets).
 5. Suggest improvements without blocking merges for style preferences.
+6. **Reject PRs that add new features to legacy projects** (Express/Next.js) -- only critical bug fixes are allowed.
 
 ## Hand-off Notes
 

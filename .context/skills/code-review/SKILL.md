@@ -30,6 +30,7 @@ Activate this skill when reviewing code changes (not necessarily a PR) for quali
    - Magic numbers or strings → suggest constants in `packages/shared`.
    - Deep nesting (>3 levels) → suggest early returns or extraction.
 6. **Security**: No SQL injection, no XSS vectors, no exposed secrets, auth on all endpoints.
+7. **Legacy awareness**: Verify no new features are being added to legacy projects (Express.js, Next.js). Only critical bug fixes are permitted in `apps/backend-express` and `apps/frontend-nextjs`. New development must target NestJS and SvelteKit.
 
 ## Examples
 

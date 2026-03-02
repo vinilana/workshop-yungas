@@ -44,7 +44,7 @@ Activate this skill when designing new API endpoints or reviewing existing ones.
    - NestJS: Use `class-validator` decorators on DTO classes.
    - Express: Manual validation checking required fields before processing.
    - Always validate: `name` (required), `owner_name` (required), `email` (required, format).
-7. **Implement in both backends**: Every endpoint must exist in both Express and NestJS with identical behavior.
+7. **Legacy policy**: New API endpoints must be designed for NestJS only. The Express.js API is frozen (legacy) and should not receive new endpoints or features. Only critical bug fixes are permitted in the Express backend. Existing dual-implementation endpoints remain as-is, but new work targets NestJS exclusively.
 
 ## Examples
 

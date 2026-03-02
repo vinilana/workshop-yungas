@@ -34,6 +34,7 @@ Activate this skill when improving code structure without changing external beha
    - Run both backends and test CRUD operations.
    - Run both frontends and verify all pages render correctly.
    - Check TypeScript compilation passes in strict mode.
+6. **Legacy project policy**: Focus refactoring efforts on the active stack (NestJS/SvelteKit) only. Do not invest refactoring time in legacy projects (Express/Next.js) as they are in maintenance-only mode. Shared utilities in `packages/shared` may still be refactored since they serve both stacks.
 
 ## Examples
 

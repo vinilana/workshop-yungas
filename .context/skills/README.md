@@ -4,6 +4,21 @@ On-demand expertise for AI agents. Skills are task-specific procedures that get 
 
 > Project: workshop-yungas
 
+## Project Context
+
+This monorepo contains both **active** and **legacy** projects:
+
+| Project | Stack | Status | Policy |
+|---------|-------|--------|--------|
+| `apps/backend-nestjs` | NestJS 10.4 | **Active** | All new backend development |
+| `apps/frontend-svelte` | SvelteKit 2.0 / Svelte 5 | **Active** | All new frontend development |
+| `apps/backend-express` | Express.js 4.21 | **Legacy** | Critical fixes only, no new features |
+| `apps/frontend-nextjs` | Next.js 14 | **Legacy** | Critical fixes only, no new features |
+| `packages/shared` | TypeScript | **Shared** | Used by all projects |
+
+- **NestJS + SvelteKit** are the active development targets. All new features, enhancements, and non-critical improvements go here.
+- **Express + Next.js** are legacy and maintained only for critical bug fixes. No new features, no new endpoints, no refactoring efforts should target these projects.
+
 ## How Skills Work
 
 1. **Discovery**: AI agents discover available skills

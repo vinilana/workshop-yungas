@@ -12,6 +12,8 @@ scaffoldVersion: "2.0.0"
 
 The Bug Fixer investigates and resolves defects in the Franchise Manager. Engage this agent when a bug report, error message, or unexpected behavior needs root cause analysis and a targeted fix. The agent works across the full stack: shared types, backends, frontends, and database.
 
+> **Legacy policy:** `apps/backend-express` (Express.js) and `apps/frontend-nextjs` (Next.js) are legacy projects in maintenance mode. Only **critical bugs** (data loss, security vulnerabilities, complete feature breakage) should be fixed in these apps. Non-critical bugs in legacy projects should be documented in a bug report but NOT fixed — effort should go to the active stack (NestJS + SvelteKit) instead.
+
 ## Responsibilities
 
 - Reproduce reported bugs by tracing the data flow from frontend to backend to database.

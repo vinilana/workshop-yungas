@@ -11,40 +11,54 @@ scaffoldVersion: "2.0.0"
 
 The Franchise Manager MVP is organized as a **monorepo with npm workspaces**. It contains two interchangeable backend implementations (Express and NestJS) and two interchangeable frontend implementations (Next.js and SvelteKit), all sharing a common types package. This architecture demonstrates framework comparison while maintaining consistent API contracts.
 
+> **Project Classification**
+>
+> | App | Status |
+> |---|---|
+> | `apps/backend-express` (Express.js 4.21) | **Legacy** -- maintenance only, no new features |
+> | `apps/frontend-nextjs` (Next.js 14) | **Legacy** -- maintenance only, no new features |
+> | `apps/backend-nestjs` (NestJS 10.4) | **Active** -- all new backend development |
+> | `apps/frontend-svelte` (SvelteKit 2.0 / Svelte 5) | **Active** -- all new frontend development |
+> | `packages/shared` | **Active** -- shared types and constants |
+>
+> All new features, enhancements, and non-critical improvements target the **Active** stack only.
+
 ## System Architecture Overview
 
 The system follows a **client-server REST architecture** with a shared types layer:
 
 ```
-┌──────────────────────────────────────────────────┐
-│                   Clients                         │
-│  ┌─────────────────┐   ┌──────────────────────┐  │
-│  │  Next.js (React) │   │  SvelteKit (Svelte5) │  │
-│  │  Port: 3000      │   │  Port: 5173          │  │
-│  └────────┬────────┘   └──────────┬───────────┘  │
-│           │    Bearer Token (Clerk)│              │
-└───────────┼────────────────────────┼──────────────┘
-            │                        │
-            ▼                        ▼
-┌──────────────────────────────────────────────────┐
-│               REST API (Port 3001)                │
-│  ┌─────────────────┐   ┌──────────────────────┐  │
-│  │  Express.js      │ OR│  NestJS              │  │
-│  │  Routes + MW     │   │  Controller+Service  │  │
-│  └────────┬────────┘   └──────────┬───────────┘  │
-│           │                        │              │
-│           ▼                        ▼              │
-│  ┌────────────────────────────────────────────┐   │
-│  │         SQLite (better-sqlite3)            │   │
-│  │         WAL mode, foreign keys             │   │
-│  └────────────────────────────────────────────┘   │
-└──────────────────────────────────────────────────┘
-            │
-            ▼
-┌──────────────────────────────────────────────────┐
-│        Shared Package (@franchise/shared)         │
-│  Types, DTOs, Constants, Seed Data               │
-└──────────────────────────────────────────────────┘
+┌───────────────────────────────────────────────────────────┐
+│                        Clients                             │
+│  ┌───────────────────────┐   ┌──────────────────────────┐ │
+│  │  Next.js (React)       │   │  SvelteKit (Svelte5)     │ │
+│  │  Port: 3000            │   │  Port: 5173              │ │
+│  │  (Legacy)              │   │  (Active)                │ │
+│  └──────────┬────────────┘   └────────────┬─────────────┘ │
+│             │     Bearer Token (Clerk)     │               │
+└─────────────┼──────────────────────────────┼───────────────┘
+              │                              │
+              ▼                              ▼
+┌───────────────────────────────────────────────────────────┐
+│                  REST API (Port 3001)                       │
+│  ┌───────────────────────┐   ┌──────────────────────────┐ │
+│  │  Express.js            │ OR│  NestJS                  │ │
+│  │  Routes + MW           │   │  Controller+Service      │ │
+│  │  (Legacy)              │   │  (Active)                │ │
+│  └──────────┬────────────┘   └────────────┬─────────────┘ │
+│             │                              │               │
+│             ▼                              ▼               │
+│  ┌───────────────────────────────────────────────────┐     │
+│  │            SQLite (better-sqlite3)                 │     │
+│  │            WAL mode, foreign keys                  │     │
+│  └───────────────────────────────────────────────────┘     │
+└───────────────────────────────────────────────────────────┘
+              │
+              ▼
+┌───────────────────────────────────────────────────────────┐
+│           Shared Package (@franchise/shared)                │
+│  Types, DTOs, Constants, Seed Data                         │
+└───────────────────────────────────────────────────────────┘
 ```
 
 Requests flow: **Browser → Clerk Auth → Frontend → REST API → Auth Middleware → Route/Controller → Database → Response**.
@@ -126,19 +140,20 @@ Requests flow: **Browser → Clerk Auth → Frontend → REST API → Auth Middl
 4. **Dual frontends (Next.js + SvelteKit)** — Framework comparison. Trade-off: maintenance of two UI implementations.
 5. **Clerk for auth** — Managed auth service reduces security surface. Trade-off: vendor lock-in for identity.
 6. **No ORM** — Direct SQL via better-sqlite3 for simplicity. Trade-off: manual query construction.
+7. **Legacy classification for Express + Next.js** — After the initial comparison phase, NestJS and SvelteKit were chosen as the primary stack going forward. Express.js and Next.js apps are now maintained only for critical bug fixes and security patches. All new feature development targets NestJS + SvelteKit exclusively.
 
 ## Diagrams
 
 ```mermaid
 graph TD
     subgraph Frontends
-        A[Next.js 14<br/>React 18] -->|REST + Bearer| API
-        B[SvelteKit 2<br/>Svelte 5] -->|REST + Bearer| API
+        A[Next.js 14 / React 18<br/>Legacy] -->|REST + Bearer| API
+        B[SvelteKit 2 / Svelte 5<br/>Active] -->|REST + Bearer| API
     end
 
     subgraph API[Backend API :3001]
-        C[Express.js] --> DB[(SQLite)]
-        D[NestJS] --> DB
+        C[Express.js<br/>Legacy] --> DB[(SQLite)]
+        D[NestJS<br/>Active] --> DB
     end
 
     subgraph Shared[@franchise/shared]
@@ -163,6 +178,7 @@ graph TD
 - **No CI/CD**: No automated build, test, or deployment pipeline configured.
 - **Duplicated logic**: Business logic exists in both Express routes and NestJS services — changes must be synchronized manually.
 - **No rate limiting**: API endpoints have no request throttling.
+- **Legacy projects frozen for new features**: `apps/backend-express` and `apps/frontend-nextjs` are legacy and receive only critical bug fixes and security patches. No new features, enhancements, or refactors should be applied to them. Any drift between the legacy and active stacks is expected and accepted.
 
 ## Top Directories Snapshot
 

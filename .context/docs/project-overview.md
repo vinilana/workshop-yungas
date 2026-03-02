@@ -13,6 +13,8 @@ This is a **Franchise Manager MVP** — a TypeScript monorepo that provides a co
 
 The codebase contains **44 source files** with **56 symbols** across 4 independent applications and 1 shared package.
 
+> **Legacy vs Active Classification**: The Express.js backend (`apps/backend-express`) and Next.js frontend (`apps/frontend-nextjs`) are **legacy projects** kept in maintenance-only mode -- no new features are developed for them. All new development targets the **NestJS backend** (`apps/backend-nestjs`) and **SvelteKit frontend** (`apps/frontend-svelte`).
+
 ## Codebase Reference
 
 > **Detailed Analysis**: For complete symbol counts, architecture layers, and dependency graphs, see [`codebase-map.json`](./codebase-map.json).
@@ -66,16 +68,16 @@ The codebase contains **44 source files** with **56 symbols** across 4 independe
 
 ## Core Framework Stack
 
-| Layer | Technology | Version |
-|-------|-----------|---------|
-| Backend (Option 1) | Express.js | 4.21 |
-| Backend (Option 2) | NestJS | 10.4 |
-| Frontend (Option 1) | Next.js (React 18) | 14.2 |
-| Frontend (Option 2) | SvelteKit (Svelte 5) | 2.0 |
-| Database | SQLite | better-sqlite3 11 |
-| Authentication | Clerk | 1.3–5.0 |
-| Styling | Tailwind CSS | 3.4 / 4.0 |
-| Validation | class-validator | 0.14 |
+| Layer | Technology | Version | Status |
+|-------|-----------|---------|--------|
+| Backend (Express) | Express.js | 4.21 | **Legacy** |
+| Backend (NestJS) | NestJS | 10.4 | **Active** |
+| Frontend (Next.js) | Next.js (React 18) | 14.2 | **Legacy** |
+| Frontend (SvelteKit) | SvelteKit (Svelte 5) | 2.0 | **Active** |
+| Database | SQLite | better-sqlite3 11 | Active |
+| Authentication | Clerk | 1.3–5.0 | Active |
+| Styling | Tailwind CSS | 3.4 / 4.0 | Active |
+| Validation | class-validator | 0.14 | Active |
 
 ## UI & Interaction Libraries
 
@@ -104,11 +106,13 @@ The codebase contains **44 source files** with **56 symbols** across 4 independe
 
 ## Next Steps
 
-- Add unit and integration tests (Jest for backends, Vitest for frontends)
-- Implement pagination on the franchise list endpoint
-- Add role-based authorization (admin vs. viewer)
-- Set up CI/CD pipeline with GitHub Actions
-- Add Docker support for containerized deployments
+> **Note**: The following next steps apply to the **active** stack (NestJS + SvelteKit) only. The legacy Express.js and Next.js apps are frozen for new features.
+
+- Add unit and integration tests (Jest for NestJS backend, Vitest for SvelteKit frontend)
+- Implement pagination on the NestJS franchise list endpoint
+- Add role-based authorization (admin vs. viewer) in the NestJS backend
+- Set up CI/CD pipeline with GitHub Actions for the active stack
+- Add Docker support for containerized deployments of NestJS + SvelteKit
 
 ## Related Resources
 

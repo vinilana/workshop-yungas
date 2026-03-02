@@ -11,6 +11,48 @@ scaffoldVersion: "2.0.0"
 
 This monorepo uses npm workspaces. Each app can be developed independently, but all share the `@franchise/shared` package for types and constants. Always rebuild the shared package after type changes.
 
+## Development Rules: Legacy vs Active Projects
+
+> **This section is mandatory reading for all contributors.**
+
+### Active Projects (all new development)
+
+| App | Directory |
+|---|---|
+| NestJS Backend | `apps/backend-nestjs` |
+| SvelteKit Frontend | `apps/frontend-svelte` |
+| Shared Package | `packages/shared` |
+
+All new features, enhancements, refactors, and non-critical improvements **MUST** target the active projects only. This includes:
+
+- New API endpoints and business logic
+- New UI pages, components, and interactions
+- Performance optimizations
+- Dependency upgrades
+- Refactoring and code quality improvements
+
+### Legacy Projects (maintenance only)
+
+| App | Directory |
+|---|---|
+| Express.js Backend | `apps/backend-express` |
+| Next.js Frontend | `apps/frontend-nextjs` |
+
+Legacy projects are **frozen for new features**. The only changes permitted are:
+
+- **Critical bug fixes** -- production-breaking issues that affect users
+- **Security patches** -- vulnerability fixes in dependencies or application code
+- **Dependency updates for security only** -- no major version upgrades unless required for a security fix
+- **Configuration changes** -- environment variable updates, deployment config adjustments
+
+**Prohibited in legacy projects:**
+- New features or enhancements
+- Refactoring or code reorganization
+- Non-security dependency upgrades
+- New tests (focus testing efforts on the active stack)
+
+> When in doubt, ask: "Does this change keep the lights on, or does it move the product forward?" Only "keep the lights on" changes are allowed in legacy projects.
+
 ## Branching & Releases
 
 - **Main branch**: `main` — represents the latest stable code.

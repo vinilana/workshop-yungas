@@ -40,6 +40,7 @@ Activate this skill when creating or updating technical documentation. Use it af
    - Check file paths and line numbers against current code.
    - Verify commands run correctly before documenting them.
    - Match type definitions to `packages/shared/src/types.ts`.
+5. **Legacy vs. active distinction**: Documentation for new features should reference NestJS and SvelteKit. Mark Express/Next.js references as legacy. When documenting APIs or features, clearly indicate whether the content applies to the active stack (NestJS/SvelteKit) or the legacy stack (Express/Next.js).
 
 ## Examples
 

@@ -17,18 +17,17 @@ Activate this skill when planning a new feature for the Franchise Manager. It br
 ## Instructions
 
 1. **Define the feature**: Write a clear 1-2 sentence description of what the feature does from the user's perspective.
-2. **Identify affected layers**:
+2. **Identify affected layers** (active stack only):
    - Shared types: New interfaces, DTOs, or constants needed?
    - Database: New columns, tables, or indexes?
-   - Backend (Express): New route handlers?
-   - Backend (NestJS): New controller methods and service logic?
-   - Frontend (Next.js): New pages, components, or API client functions?
-   - Frontend (SvelteKit): New routes, stores, or API client functions?
+   - Backend (NestJS): New controller methods and service logic? **(all new backend work goes here)**
+   - Frontend (SvelteKit): New routes, stores, or API client functions? **(all new frontend work goes here)**
+   - **Note**: Do NOT plan new features for legacy projects (Express/Next.js). These are in maintenance-only mode.
 3. **Create ordered tasks**:
    - Start with shared types (other tasks depend on these).
    - Then database schema changes.
-   - Then backend implementation (can be done in parallel for Express/NestJS).
-   - Then frontend implementation (can be done in parallel for Next.js/SvelteKit).
+   - Then NestJS backend implementation.
+   - Then SvelteKit frontend implementation.
    - Finally, documentation and tests.
 4. **Estimate complexity**: Tag each task as S (small, < 30 min), M (medium, 1-2 hours), or L (large, half-day+).
 5. **Identify risks**: Note dependencies, unknowns, or decisions needed.
