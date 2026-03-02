@@ -1,0 +1,917 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-03-02T18:03:59.429Z",
+  "stack": {
+    "primaryLanguage": "typescript",
+    "languages": [
+      "javascript",
+      "typescript"
+    ],
+    "frameworks": [],
+    "buildTools": [],
+    "testFrameworks": [],
+    "packageManager": "npm",
+    "isMonorepo": false,
+    "hasDocker": false,
+    "hasCI": false
+  },
+  "structure": {
+    "totalFiles": 208,
+    "rootPath": ".",
+    "topDirectories": [
+      {
+        "name": "apps",
+        "fileCount": 183,
+        "description": "Application entry (Next.js app router)"
+      },
+      {
+        "name": "packages",
+        "fileCount": 22,
+        "description": "Package definitions"
+      }
+    ],
+    "languageDistribution": [
+      {
+        "extension": ".ts",
+        "count": 66
+      },
+      {
+        "extension": ".js",
+        "count": 43
+      },
+      {
+        "extension": ".json",
+        "count": 20
+      },
+      {
+        "extension": ".map",
+        "count": 18
+      },
+      {
+        "extension": ".tsx",
+        "count": 10
+      },
+      {
+        "extension": ".mjs",
+        "count": 10
+      },
+      {
+        "extension": ".md",
+        "count": 7
+      },
+      {
+        "extension": ".mts",
+        "count": 7
+      },
+      {
+        "extension": ".css",
+        "count": 6
+      },
+      {
+        "extension": ".svelte",
+        "count": 5
+      }
+    ]
+  },
+  "architecture": {
+    "layers": [
+      {
+        "name": "Utils",
+        "description": "Shared utilities and helpers",
+        "directories": [
+          "packages/shared/src",
+          "apps/frontend-svelte/src/lib",
+          "apps/frontend-svelte/src/lib/stores"
+        ],
+        "symbolCount": 11,
+        "dependsOn": []
+      },
+      {
+        "name": "Repositories",
+        "description": "Data access and persistence",
+        "directories": [
+          "packages/shared/src",
+          "apps/backend-express/src",
+          "apps/backend-nestjs/src/database"
+        ],
+        "symbolCount": 2,
+        "dependsOn": [
+          "Services"
+        ]
+      },
+      {
+        "name": "Controllers",
+        "description": "Request handling and routing",
+        "directories": [
+          "apps/frontend-svelte/src/routes",
+          "apps/frontend-svelte/src/lib",
+          "apps/frontend-nextjs/src/lib",
+          "apps/backend-nestjs/src/franchise",
+          "apps/backend-express/src/routes"
+        ],
+        "symbolCount": 17,
+        "dependsOn": [
+          "Services"
+        ]
+      },
+      {
+        "name": "Services",
+        "description": "Business logic and orchestration",
+        "directories": [
+          "apps/backend-nestjs/src/franchise",
+          "apps/backend-nestjs/src/database"
+        ],
+        "symbolCount": 3,
+        "dependsOn": []
+      },
+      {
+        "name": "Components",
+        "description": "UI components and views",
+        "directories": [
+          "apps/frontend-nextjs/src/components",
+          "apps/frontend-nextjs/src/app",
+          "apps/frontend-nextjs/src/app/dashboard",
+          "apps/frontend-nextjs/src/app/franchises/new",
+          "apps/frontend-nextjs/src/app/franchises/[id]",
+          "apps/frontend-nextjs/src/app/sign-in/[[...sign-in]]"
+        ],
+        "symbolCount": 15,
+        "dependsOn": []
+      }
+    ],
+    "patterns": [
+      {
+        "name": "Service Layer",
+        "confidence": 0.85,
+        "description": "Encapsulates business logic in service classes",
+        "occurrences": 2
+      },
+      {
+        "name": "Controller",
+        "confidence": 0.9,
+        "description": "Handles incoming requests and returns responses",
+        "occurrences": 1
+      }
+    ],
+    "entryPoints": [
+      "packages/shared/src/index.ts",
+      "apps/backend-nestjs/src/main.ts",
+      "apps/backend-express/src/index.ts"
+    ],
+    "mainEntryPoints": [],
+    "moduleExports": [
+      "packages/shared/src/index.ts",
+      "apps/backend-nestjs/src/main.ts",
+      "apps/backend-express/src/index.ts"
+    ]
+  },
+  "symbols": {
+    "classes": [
+      {
+        "name": "AppModule",
+        "kind": "class",
+        "file": "apps/backend-nestjs/src/app.module.ts",
+        "line": 9,
+        "exported": true
+      },
+      {
+        "name": "AuthModule",
+        "kind": "class",
+        "file": "apps/backend-nestjs/src/auth/auth.module.ts",
+        "line": 13,
+        "exported": true
+      },
+      {
+        "name": "ClerkAuthGuard",
+        "kind": "class",
+        "file": "apps/backend-nestjs/src/auth/clerk.guard.ts",
+        "line": 10,
+        "exported": true
+      },
+      {
+        "name": "DatabaseModule",
+        "kind": "class",
+        "file": "apps/backend-nestjs/src/database/database.module.ts",
+        "line": 9,
+        "exported": true
+      },
+      {
+        "name": "DatabaseService",
+        "kind": "class",
+        "file": "apps/backend-nestjs/src/database/database.service.ts",
+        "line": 6,
+        "exported": true
+      },
+      {
+        "name": "FranchiseController",
+        "kind": "class",
+        "file": "apps/backend-nestjs/src/franchise/franchise.controller.ts",
+        "line": 24,
+        "exported": true
+      },
+      {
+        "name": "FranchiseModule",
+        "kind": "class",
+        "file": "apps/backend-nestjs/src/franchise/franchise.module.ts",
+        "line": 9,
+        "exported": true
+      },
+      {
+        "name": "FranchiseService",
+        "kind": "class",
+        "file": "apps/backend-nestjs/src/franchise/franchise.service.ts",
+        "line": 24,
+        "exported": true
+      }
+    ],
+    "interfaces": [
+      {
+        "name": "ApiErrorResponse",
+        "kind": "interface",
+        "file": "packages/shared/src/types.ts",
+        "line": 44,
+        "exported": true
+      },
+      {
+        "name": "ApiResponse",
+        "kind": "interface",
+        "file": "packages/shared/src/types.ts",
+        "line": 39,
+        "exported": true
+      },
+      {
+        "name": "CreateFranchiseDTO",
+        "kind": "interface",
+        "file": "packages/shared/src/types.ts",
+        "line": 17,
+        "exported": true
+      },
+      {
+        "name": "Franchise",
+        "kind": "interface",
+        "file": "packages/shared/src/types.ts",
+        "line": 1,
+        "exported": true
+      },
+      {
+        "name": "SeedFranchise",
+        "kind": "interface",
+        "file": "packages/shared/src/seed-data.ts",
+        "line": 3,
+        "exported": true
+      },
+      {
+        "name": "Toast",
+        "kind": "interface",
+        "file": "apps/frontend-svelte/src/lib/stores/toast.ts",
+        "line": 3,
+        "exported": true
+      },
+      {
+        "name": "UpdateFranchiseDTO",
+        "kind": "interface",
+        "file": "packages/shared/src/types.ts",
+        "line": 28,
+        "exported": true
+      },
+      {
+        "name": "DeleteConfirmDialogProps",
+        "kind": "interface",
+        "file": "apps/frontend-nextjs/src/components/DeleteConfirmDialog.tsx",
+        "line": 3,
+        "exported": false
+      },
+      {
+        "name": "FranchiseFormProps",
+        "kind": "interface",
+        "file": "apps/frontend-nextjs/src/components/FranchiseForm.tsx",
+        "line": 10,
+        "exported": false
+      },
+      {
+        "name": "FranchiseRow",
+        "kind": "interface",
+        "file": "apps/backend-nestjs/src/franchise/franchise.service.ts",
+        "line": 9,
+        "exported": false
+      },
+      {
+        "name": "FranchiseRow",
+        "kind": "interface",
+        "file": "apps/backend-express/src/routes/franchises.ts",
+        "line": 14,
+        "exported": false
+      },
+      {
+        "name": "FranchiseTableProps",
+        "kind": "interface",
+        "file": "apps/frontend-nextjs/src/components/FranchiseTable.tsx",
+        "line": 7,
+        "exported": false
+      }
+    ],
+    "functions": [
+      {
+        "name": "createFranchise",
+        "kind": "function",
+        "file": "apps/frontend-svelte/src/lib/api.ts",
+        "line": 58,
+        "exported": true
+      },
+      {
+        "name": "createFranchise",
+        "kind": "function",
+        "file": "apps/frontend-nextjs/src/lib/api.ts",
+        "line": 57,
+        "exported": true
+      },
+      {
+        "name": "DeleteConfirmDialog",
+        "kind": "function",
+        "file": "apps/frontend-nextjs/src/components/DeleteConfirmDialog.tsx",
+        "line": 11,
+        "exported": true
+      },
+      {
+        "name": "deleteFranchise",
+        "kind": "function",
+        "file": "apps/frontend-svelte/src/lib/api.ts",
+        "line": 75,
+        "exported": true
+      },
+      {
+        "name": "deleteFranchise",
+        "kind": "function",
+        "file": "apps/frontend-nextjs/src/lib/api.ts",
+        "line": 86,
+        "exported": true
+      },
+      {
+        "name": "FranchiseDetailPage",
+        "kind": "function",
+        "file": "apps/frontend-nextjs/src/app/franchises/[id]/page.tsx",
+        "line": 13,
+        "exported": true
+      },
+      {
+        "name": "getFranchise",
+        "kind": "function",
+        "file": "apps/frontend-svelte/src/lib/api.ts",
+        "line": 54,
+        "exported": true
+      },
+      {
+        "name": "getFranchise",
+        "kind": "function",
+        "file": "apps/frontend-nextjs/src/lib/api.ts",
+        "line": 47,
+        "exported": true
+      },
+      {
+        "name": "getFranchises",
+        "kind": "function",
+        "file": "apps/frontend-svelte/src/lib/api.ts",
+        "line": 49,
+        "exported": true
+      },
+      {
+        "name": "getFranchises",
+        "kind": "function",
+        "file": "apps/frontend-nextjs/src/lib/api.ts",
+        "line": 36,
+        "exported": true
+      },
+      {
+        "name": "getToken",
+        "kind": "function",
+        "file": "apps/frontend-svelte/src/lib/stores/auth.ts",
+        "line": 1,
+        "exported": true
+      },
+      {
+        "name": "handleDelete",
+        "kind": "function",
+        "file": "apps/frontend-nextjs/src/app/franchises/[id]/page.tsx",
+        "line": 53,
+        "exported": true
+      },
+      {
+        "name": "handleSubmit",
+        "kind": "function",
+        "file": "apps/frontend-nextjs/src/app/franchises/new/page.tsx",
+        "line": 14,
+        "exported": true
+      },
+      {
+        "name": "handleUpdate",
+        "kind": "function",
+        "file": "apps/frontend-nextjs/src/app/franchises/[id]/page.tsx",
+        "line": 46,
+        "exported": true
+      },
+      {
+        "name": "Home",
+        "kind": "function",
+        "file": "apps/frontend-nextjs/src/app/page.tsx",
+        "line": 3,
+        "exported": true
+      },
+      {
+        "name": "NewFranchisePage",
+        "kind": "function",
+        "file": "apps/frontend-nextjs/src/app/franchises/new/page.tsx",
+        "line": 10,
+        "exported": true
+      },
+      {
+        "name": "RootLayout",
+        "kind": "function",
+        "file": "apps/frontend-nextjs/src/app/layout.tsx",
+        "line": 16,
+        "exported": true
+      },
+      {
+        "name": "StatusBadge",
+        "kind": "function",
+        "file": "apps/frontend-nextjs/src/components/StatusBadge.tsx",
+        "line": 26,
+        "exported": true
+      },
+      {
+        "name": "updateFranchise",
+        "kind": "function",
+        "file": "apps/frontend-svelte/src/lib/api.ts",
+        "line": 65,
+        "exported": true
+      },
+      {
+        "name": "updateFranchise",
+        "kind": "function",
+        "file": "apps/frontend-nextjs/src/lib/api.ts",
+        "line": 71,
+        "exported": true
+      },
+      {
+        "name": "add",
+        "kind": "function",
+        "file": "apps/frontend-svelte/src/lib/stores/toast.ts",
+        "line": 14,
+        "exported": false
+      },
+      {
+        "name": "bootstrap",
+        "kind": "function",
+        "file": "apps/backend-nestjs/src/main.ts",
+        "line": 6,
+        "exported": false
+      },
+      {
+        "name": "createToastStore",
+        "kind": "function",
+        "file": "apps/frontend-svelte/src/lib/stores/toast.ts",
+        "line": 11,
+        "exported": false
+      },
+      {
+        "name": "fetchWithAuth",
+        "kind": "function",
+        "file": "apps/frontend-nextjs/src/lib/api.ts",
+        "line": 12,
+        "exported": false
+      },
+      {
+        "name": "getToken",
+        "kind": "function",
+        "file": "apps/frontend-svelte/src/lib/api.ts",
+        "line": 11,
+        "exported": false
+      },
+      {
+        "name": "handleChange",
+        "kind": "function",
+        "file": "apps/frontend-nextjs/src/components/FranchiseForm.tsx",
+        "line": 35,
+        "exported": false
+      },
+      {
+        "name": "handleReset",
+        "kind": "function",
+        "file": "apps/frontend-nextjs/src/app/dashboard/page.tsx",
+        "line": 74,
+        "exported": false
+      },
+      {
+        "name": "handleSearch",
+        "kind": "function",
+        "file": "apps/frontend-nextjs/src/app/dashboard/page.tsx",
+        "line": 69,
+        "exported": false
+      },
+      {
+        "name": "handleSubmit",
+        "kind": "function",
+        "file": "apps/frontend-nextjs/src/components/FranchiseForm.tsx",
+        "line": 41,
+        "exported": false
+      },
+      {
+        "name": "handleUpdateFranchise",
+        "kind": "function",
+        "file": "apps/backend-express/src/routes/franchises.ts",
+        "line": 128,
+        "exported": false
+      }
+    ],
+    "types": [
+      {
+        "name": "FranchiseStatus",
+        "kind": "type",
+        "file": "packages/shared/src/types.ts",
+        "line": 15,
+        "exported": true
+      }
+    ],
+    "enums": []
+  },
+  "publicAPI": [
+    {
+      "name": "ApiErrorResponse",
+      "kind": "interface",
+      "file": "packages/shared/src/types.ts",
+      "line": 44,
+      "exported": true
+    },
+    {
+      "name": "ApiResponse",
+      "kind": "interface",
+      "file": "packages/shared/src/types.ts",
+      "line": 39,
+      "exported": true
+    },
+    {
+      "name": "AppModule",
+      "kind": "class",
+      "file": "apps/backend-nestjs/src/app.module.ts",
+      "line": 9,
+      "exported": true
+    },
+    {
+      "name": "AuthModule",
+      "kind": "class",
+      "file": "apps/backend-nestjs/src/auth/auth.module.ts",
+      "line": 13,
+      "exported": true
+    },
+    {
+      "name": "ClerkAuthGuard",
+      "kind": "class",
+      "file": "apps/backend-nestjs/src/auth/clerk.guard.ts",
+      "line": 10,
+      "exported": true
+    },
+    {
+      "name": "createFranchise",
+      "kind": "function",
+      "file": "apps/frontend-svelte/src/lib/api.ts",
+      "line": 58,
+      "exported": true
+    },
+    {
+      "name": "createFranchise",
+      "kind": "function",
+      "file": "apps/frontend-nextjs/src/lib/api.ts",
+      "line": 57,
+      "exported": true
+    },
+    {
+      "name": "CreateFranchiseDTO",
+      "kind": "interface",
+      "file": "packages/shared/src/types.ts",
+      "line": 17,
+      "exported": true
+    },
+    {
+      "name": "DatabaseModule",
+      "kind": "class",
+      "file": "apps/backend-nestjs/src/database/database.module.ts",
+      "line": 9,
+      "exported": true
+    },
+    {
+      "name": "DatabaseService",
+      "kind": "class",
+      "file": "apps/backend-nestjs/src/database/database.service.ts",
+      "line": 6,
+      "exported": true
+    },
+    {
+      "name": "DeleteConfirmDialog",
+      "kind": "function",
+      "file": "apps/frontend-nextjs/src/components/DeleteConfirmDialog.tsx",
+      "line": 11,
+      "exported": true
+    },
+    {
+      "name": "deleteFranchise",
+      "kind": "function",
+      "file": "apps/frontend-svelte/src/lib/api.ts",
+      "line": 75,
+      "exported": true
+    },
+    {
+      "name": "deleteFranchise",
+      "kind": "function",
+      "file": "apps/frontend-nextjs/src/lib/api.ts",
+      "line": 86,
+      "exported": true
+    },
+    {
+      "name": "Franchise",
+      "kind": "interface",
+      "file": "packages/shared/src/types.ts",
+      "line": 1,
+      "exported": true
+    },
+    {
+      "name": "FranchiseController",
+      "kind": "class",
+      "file": "apps/backend-nestjs/src/franchise/franchise.controller.ts",
+      "line": 24,
+      "exported": true
+    },
+    {
+      "name": "FranchiseDetailPage",
+      "kind": "function",
+      "file": "apps/frontend-nextjs/src/app/franchises/[id]/page.tsx",
+      "line": 13,
+      "exported": true
+    },
+    {
+      "name": "FranchiseModule",
+      "kind": "class",
+      "file": "apps/backend-nestjs/src/franchise/franchise.module.ts",
+      "line": 9,
+      "exported": true
+    },
+    {
+      "name": "FranchiseService",
+      "kind": "class",
+      "file": "apps/backend-nestjs/src/franchise/franchise.service.ts",
+      "line": 24,
+      "exported": true
+    },
+    {
+      "name": "FranchiseStatus",
+      "kind": "type",
+      "file": "packages/shared/src/types.ts",
+      "line": 15,
+      "exported": true
+    },
+    {
+      "name": "getFranchise",
+      "kind": "function",
+      "file": "apps/frontend-svelte/src/lib/api.ts",
+      "line": 54,
+      "exported": true
+    },
+    {
+      "name": "getFranchise",
+      "kind": "function",
+      "file": "apps/frontend-nextjs/src/lib/api.ts",
+      "line": 47,
+      "exported": true
+    },
+    {
+      "name": "getFranchises",
+      "kind": "function",
+      "file": "apps/frontend-svelte/src/lib/api.ts",
+      "line": 49,
+      "exported": true
+    },
+    {
+      "name": "getFranchises",
+      "kind": "function",
+      "file": "apps/frontend-nextjs/src/lib/api.ts",
+      "line": 36,
+      "exported": true
+    },
+    {
+      "name": "getToken",
+      "kind": "function",
+      "file": "apps/frontend-svelte/src/lib/stores/auth.ts",
+      "line": 1,
+      "exported": true
+    },
+    {
+      "name": "handleDelete",
+      "kind": "function",
+      "file": "apps/frontend-nextjs/src/app/franchises/[id]/page.tsx",
+      "line": 53,
+      "exported": true
+    },
+    {
+      "name": "handleSubmit",
+      "kind": "function",
+      "file": "apps/frontend-nextjs/src/app/franchises/new/page.tsx",
+      "line": 14,
+      "exported": true
+    },
+    {
+      "name": "handleUpdate",
+      "kind": "function",
+      "file": "apps/frontend-nextjs/src/app/franchises/[id]/page.tsx",
+      "line": 46,
+      "exported": true
+    },
+    {
+      "name": "Home",
+      "kind": "function",
+      "file": "apps/frontend-nextjs/src/app/page.tsx",
+      "line": 3,
+      "exported": true
+    },
+    {
+      "name": "NewFranchisePage",
+      "kind": "function",
+      "file": "apps/frontend-nextjs/src/app/franchises/new/page.tsx",
+      "line": 10,
+      "exported": true
+    },
+    {
+      "name": "RootLayout",
+      "kind": "function",
+      "file": "apps/frontend-nextjs/src/app/layout.tsx",
+      "line": 16,
+      "exported": true
+    }
+  ],
+  "dependencies": {
+    "mostImported": [
+      {
+        "file": "apps/backend-nestjs/src/database/database.service.ts",
+        "importedBy": 2
+      },
+      {
+        "file": "apps/backend-nestjs/src/franchise/franchise.service.ts",
+        "importedBy": 2
+      },
+      {
+        "file": "apps/backend-nestjs/src/app.module.ts",
+        "importedBy": 1,
+        "description": "Source code root"
+      },
+      {
+        "file": "apps/backend-nestjs/src/database/database.module.ts",
+        "importedBy": 1
+      },
+      {
+        "file": "apps/backend-nestjs/src/auth/auth.module.ts",
+        "importedBy": 1
+      },
+      {
+        "file": "apps/backend-nestjs/src/franchise/franchise.module.ts",
+        "importedBy": 1
+      },
+      {
+        "file": "apps/backend-nestjs/src/franchise/franchise.controller.ts",
+        "importedBy": 1
+      },
+      {
+        "file": "apps/backend-nestjs/src/auth/clerk.guard.ts",
+        "importedBy": 1
+      },
+      {
+        "file": "apps/frontend-nextjs/src/components/StatusBadge.tsx",
+        "importedBy": 1,
+        "description": "UI components"
+      },
+      {
+        "file": "apps/frontend-nextjs/src/app/globals.css",
+        "importedBy": 1,
+        "description": "Application entry (Next.js app router)"
+      }
+    ]
+  },
+  "stats": {
+    "totalSymbols": 56,
+    "exportedSymbols": 36,
+    "analysisTimeMs": 165
+  },
+  "keyFiles": [
+    {
+      "path": "apps/backend-express/src/index.ts",
+      "description": "src module exports",
+      "category": "entrypoint"
+    },
+    {
+      "path": "apps/backend-nestjs/src/main.ts",
+      "description": "Source code root",
+      "category": "entrypoint"
+    },
+    {
+      "path": "packages/shared/src/index.ts",
+      "description": "src module exports",
+      "category": "entrypoint"
+    },
+    {
+      "path": "apps/backend-express/tsconfig.json",
+      "description": "TypeScript configuration",
+      "category": "config"
+    },
+    {
+      "path": "apps/backend-nestjs/tsconfig.json",
+      "description": "TypeScript configuration",
+      "category": "config"
+    },
+    {
+      "path": "apps/frontend-nextjs/next.config.js",
+      "description": "Tool configuration",
+      "category": "config"
+    },
+    {
+      "path": "apps/frontend-nextjs/postcss.config.js",
+      "description": "Tool configuration",
+      "category": "config"
+    },
+    {
+      "path": "apps/frontend-nextjs/tailwind.config.ts",
+      "description": "Tool configuration",
+      "category": "config"
+    },
+    {
+      "path": "apps/frontend-nextjs/tsconfig.json",
+      "description": "TypeScript configuration",
+      "category": "config"
+    },
+    {
+      "path": "apps/frontend-svelte/svelte.config.js",
+      "description": "Tool configuration",
+      "category": "config"
+    },
+    {
+      "path": "apps/frontend-svelte/tsconfig.json",
+      "description": "TypeScript configuration",
+      "category": "config"
+    },
+    {
+      "path": "apps/frontend-svelte/vite.config.ts",
+      "description": "Tool configuration",
+      "category": "config"
+    },
+    {
+      "path": "package.json",
+      "description": "Package manifest",
+      "category": "config"
+    },
+    {
+      "path": "packages/shared/tsconfig.json",
+      "description": "TypeScript configuration",
+      "category": "config"
+    },
+    {
+      "path": "tsconfig.base.json",
+      "description": "TypeScript configuration",
+      "category": "config"
+    },
+    {
+      "path": "packages/shared/dist/types.d.ts",
+      "description": "Type definitions",
+      "category": "types"
+    },
+    {
+      "path": "packages/shared/src/types.ts",
+      "description": "Type definitions",
+      "category": "types"
+    },
+    {
+      "path": "apps/frontend-svelte/node_modules/picomatch/lib/utils.js",
+      "description": "Utility functions",
+      "category": "util"
+    }
+  ],
+  "navigation": {
+    "tests": "src/**/*.test.ts",
+    "config": [
+      "package.json",
+      "tsconfig.json",
+      "tsconfig.*.json",
+      "vite.config.ts",
+      "next.config.js"
+    ],
+    "types": [
+      "apps/frontend-nextjs/next-env.d.ts",
+      "packages/shared/src/types.ts",
+      "packages/shared/dist/types.d.ts",
+      "packages/shared/dist/seed-data.d.ts",
+      "packages/shared/dist/index.d.ts",
+      "packages/shared/dist/constants.d.ts",
+      "apps/backend-nestjs/dist/seed.d.ts",
+      "apps/backend-nestjs/dist/main.d.ts",
+      "apps/backend-nestjs/dist/app.module.d.ts",
+      "apps/frontend-svelte/src/app.d.ts"
+    ],
+    "mainLogic": [
+      "src"
+    ]
+  }
+}
