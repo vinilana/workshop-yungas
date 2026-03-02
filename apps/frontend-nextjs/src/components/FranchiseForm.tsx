@@ -1,12 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import type {
   CreateFranchiseDTO,
   Franchise,
-  FranchiseStatus,
 } from "@franchise/shared";
 import { BRAZILIAN_STATES, FRANCHISE_STATUSES } from "@franchise/shared";
+import { useState } from "react";
 
 interface FranchiseFormProps {
   initialData?: Franchise;
@@ -52,20 +51,31 @@ export default function FranchiseForm({
     }
   }
 
+  const fieldLabelClass =
+    "mb-1.5 block text-xs font-semibold uppercase tracking-[0.12em] text-slate-500";
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl">
+    <form
+      onSubmit={handleSubmit}
+      className="surface-card max-w-4xl space-y-8 p-6 sm:p-8"
+      data-animate="lift"
+    >
+      <div>
+        <span className="tag-pill">Franchise profile</span>
+        <p className="mt-3 text-sm text-slate-600">
+          Keep this data accurate to simplify support, expansion, and reporting.
+        </p>
+      </div>
+
       {error && (
-        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md text-sm">
+        <div className="alert-error" role="alert">
           {error}
         </div>
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div>
-          <label
-            htmlFor="name"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <div className="sm:col-span-2">
+          <label htmlFor="name" className={fieldLabelClass}>
             Franchise Name
           </label>
           <input
@@ -75,15 +85,13 @@ export default function FranchiseForm({
             required
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+            placeholder="Golden Bean Coffee - Sao Paulo"
+            className="soft-input"
           />
         </div>
 
         <div>
-          <label
-            htmlFor="ownerName"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
+          <label htmlFor="ownerName" className={fieldLabelClass}>
             Owner Name
           </label>
           <input
@@ -93,15 +101,13 @@ export default function FranchiseForm({
             required
             value={formData.ownerName}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+            placeholder="Full legal name"
+            className="soft-input"
           />
         </div>
 
         <div>
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
+          <label htmlFor="email" className={fieldLabelClass}>
             Email
           </label>
           <input
@@ -111,15 +117,13 @@ export default function FranchiseForm({
             required
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+            placeholder="owner@brand.com"
+            className="soft-input"
           />
         </div>
 
         <div>
-          <label
-            htmlFor="phone"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
+          <label htmlFor="phone" className={fieldLabelClass}>
             Phone
           </label>
           <input
@@ -129,15 +133,13 @@ export default function FranchiseForm({
             required
             value={formData.phone}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+            placeholder="+55 (11) 98888-8888"
+            className="soft-input"
           />
         </div>
 
         <div className="sm:col-span-2">
-          <label
-            htmlFor="address"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
+          <label htmlFor="address" className={fieldLabelClass}>
             Address
           </label>
           <input
@@ -147,15 +149,13 @@ export default function FranchiseForm({
             required
             value={formData.address}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+            placeholder="Avenue, number, district"
+            className="soft-input"
           />
         </div>
 
         <div>
-          <label
-            htmlFor="city"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
+          <label htmlFor="city" className={fieldLabelClass}>
             City
           </label>
           <input
@@ -165,15 +165,13 @@ export default function FranchiseForm({
             required
             value={formData.city}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+            placeholder="Sao Paulo"
+            className="soft-input"
           />
         </div>
 
         <div>
-          <label
-            htmlFor="state"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
+          <label htmlFor="state" className={fieldLabelClass}>
             State
           </label>
           <select
@@ -182,7 +180,7 @@ export default function FranchiseForm({
             required
             value={formData.state}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+            className="soft-input"
           >
             <option value="">Select a state</option>
             {BRAZILIAN_STATES.map((st) => (
@@ -194,10 +192,7 @@ export default function FranchiseForm({
         </div>
 
         <div>
-          <label
-            htmlFor="status"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
+          <label htmlFor="status" className={fieldLabelClass}>
             Status
           </label>
           <select
@@ -205,7 +200,7 @@ export default function FranchiseForm({
             name="status"
             value={formData.status}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+            className="soft-input"
           >
             {FRANCHISE_STATUSES.map((s) => (
               <option key={s} value={s}>
@@ -216,14 +211,17 @@ export default function FranchiseForm({
         </div>
       </div>
 
-      <div className="flex gap-3">
+      <div className="flex items-center gap-3 border-t pt-6">
         <button
           type="submit"
           disabled={loading}
-          className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 disabled:opacity-50 transition-colors"
+          className="primary-btn min-w-40"
         >
           {loading ? "Saving..." : submitLabel}
         </button>
+        <p className="text-xs text-slate-500">
+          Updates are visible immediately in the dashboard.
+        </p>
       </div>
     </form>
   );

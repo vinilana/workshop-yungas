@@ -1,16 +1,14 @@
 "use client";
 
 import { useAuth } from "@clerk/nextjs";
+import type { CreateFranchiseDTO, Franchise } from "@franchise/shared";
+import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import type { Franchise, CreateFranchiseDTO } from "@franchise/shared";
-import {
-  getFranchise,
-  updateFranchise,
-  deleteFranchise,
-} from "@/lib/api";
-import FranchiseForm from "@/components/FranchiseForm";
 import DeleteConfirmDialog from "@/components/DeleteConfirmDialog";
+import FranchiseForm from "@/components/FranchiseForm";
+import StatusBadge from "@/components/StatusBadge";
+import { deleteFranchise, getFranchise, updateFranchise } from "@/lib/api";
 
 export default function FranchiseDetailPage() {
   const { getToken } = useAuth();
@@ -70,42 +68,75 @@ export default function FranchiseDetailPage() {
 
   if (loading) {
     return (
-      <div className="text-center py-12">
-        <p className="text-gray-500 text-sm">Loading franchise...</p>
+      <div className="surface-card p-8">
+        <div className="loading-pulse h-7 w-40" />
+        <div className="loading-pulse mt-3 h-4 w-72" />
+        <div className="loading-pulse mt-8 h-12 w-full" />
+        <div className="loading-pulse mt-3 h-12 w-full" />
+        <div className="loading-pulse mt-3 h-12 w-full" />
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md text-sm">
-        {error}
+      <div className="space-y-4">
+        <div className="alert-error">{error}</div>
+        <Link href="/dashboard" className="secondary-btn">
+          Back to dashboard
+        </Link>
       </div>
     );
   }
 
   if (!franchise) {
     return (
-      <div className="text-center py-12">
-        <p className="text-gray-500 text-sm">Franchise not found.</p>
+      <div className="surface-card py-12 text-center">
+        <p className="text-base font-semibold text-slate-900">
+          Franchise not found
+        </p>
+        <p className="mt-2 text-sm text-slate-600">
+          This record may have been removed or is no longer available.
+        </p>
+        <Link href="/dashboard" className="secondary-btn mt-5">
+          Back to dashboard
+        </Link>
       </div>
     );
   }
 
   return (
-    <div>
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">
-          Edit Franchise
-        </h1>
-        <button
-          type="button"
-          onClick={() => setShowDelete(true)}
-          className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition-colors"
-        >
-          Delete
-        </button>
-      </div>
+    <div className="space-y-6" data-animate="lift">
+      <section className="surface-card p-6 sm:p-8">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <span className="tag-pill">Franchise record</span>
+            <h1 className="page-title mt-4">{franchise.name}</h1>
+            <p className="page-subtitle">
+              Update operational details, contact info, and status to keep this
+              unit aligned with your network.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            <Link href="/dashboard" className="secondary-btn">
+              Back
+            </Link>
+            <button
+              type="button"
+              onClick={() => setShowDelete(true)}
+              className="danger-btn"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+        <div className="mt-6 flex flex-wrap items-center gap-2">
+          <StatusBadge status={franchise.status} />
+          <span className="tag-pill">{franchise.city}/{franchise.state}</span>
+          <span className="tag-pill">{franchise.email}</span>
+          <span className="tag-pill">{franchise.phone}</span>
+        </div>
+      </section>
 
       <FranchiseForm
         initialData={franchise}
