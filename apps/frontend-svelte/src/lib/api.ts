@@ -6,9 +6,13 @@ import type {
 	ApiResponse,
 	ApiErrorResponse
 } from '@franchise/shared';
-import { getToken } from './stores/auth';
-
 const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+
+async function getToken(): Promise<string | null> {
+	const clerk = (window as any).Clerk;
+	if (!clerk?.session) return null;
+	return clerk.session.getToken();
+}
 
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
 	const token = await getToken();

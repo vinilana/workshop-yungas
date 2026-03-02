@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { isSignedIn } from '$lib/stores/auth';
+	import { useClerkContext } from 'svelte-clerk';
 	import { toast } from '$lib/stores/toast';
 	import { createFranchise } from '$lib/api';
 	import { BRAZILIAN_STATES, FRANCHISE_STATUSES } from '@franchise/shared';
-	import type { CreateFranchiseDTO, FranchiseStatus } from '@franchise/shared';
+	import type { CreateFranchiseDTO } from '@franchise/shared';
+
+	const ctx = useClerkContext();
 
 	let saving = $state(false);
 	let form = $state<CreateFranchiseDTO>({
@@ -19,7 +21,7 @@
 	});
 
 	$effect(() => {
-		if (!$isSignedIn) {
+		if (ctx.isLoaded && !ctx.user) {
 			goto('/');
 		}
 	});

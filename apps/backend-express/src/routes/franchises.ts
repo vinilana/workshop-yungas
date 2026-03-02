@@ -125,8 +125,7 @@ router.post(API_ROUTES.FRANCHISES, (req: Request, res: Response) => {
   res.status(201).json(response);
 });
 
-// PUT /api/franchises/:id
-router.put(`${API_ROUTES.FRANCHISES}/:id`, (req: Request, res: Response) => {
+function handleUpdateFranchise(req: Request, res: Response): void {
   const existing = db
     .prepare(`SELECT * FROM franchises WHERE id = ?`)
     .get(req.params.id) as FranchiseRow | undefined;
@@ -168,7 +167,13 @@ router.put(`${API_ROUTES.FRANCHISES}/:id`, (req: Request, res: Response) => {
     message: "Franchise updated successfully",
   };
   res.json(response);
-});
+}
+
+// PUT /api/franchises/:id
+router.put(`${API_ROUTES.FRANCHISES}/:id`, handleUpdateFranchise);
+
+// PATCH /api/franchises/:id
+router.patch(`${API_ROUTES.FRANCHISES}/:id`, handleUpdateFranchise);
 
 // DELETE /api/franchises/:id
 router.delete(

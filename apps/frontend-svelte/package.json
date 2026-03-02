@@ -9,8 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@clerk/clerk-js": "^5.0.0",
-    "@franchise/shared": "*"
+    "@franchise/shared": "*",
+    "svelte-clerk": "^0.20.5"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^3.0.0",

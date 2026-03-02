@@ -2,6 +2,7 @@ import {
   Controller,
   Get,
   Post,
+  Patch,
   Put,
   Delete,
   Param,
@@ -44,6 +45,15 @@ export class FranchiseController {
 
   @Put(':id')
   update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() dto: UpdateFranchiseDTO,
+  ): ApiResponse<Franchise> {
+    const data = this.franchiseService.update(id, dto);
+    return { data, message: 'Franchise updated successfully' };
+  }
+
+  @Patch(':id')
+  patch(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateFranchiseDTO,
   ): ApiResponse<Franchise> {

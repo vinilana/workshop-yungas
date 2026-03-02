@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
-	import { isSignedIn } from '$lib/stores/auth';
+	import { useClerkContext } from 'svelte-clerk';
 	import { toast } from '$lib/stores/toast';
 	import { getFranchises, deleteFranchise } from '$lib/api';
 	import type { Franchise } from '@franchise/shared';
+
+	const ctx = useClerkContext();
 
 	let franchises = $state<Franchise[]>([]);
 	let loading = $state(true);
@@ -14,7 +16,7 @@
 	let deleting = $state(false);
 
 	$effect(() => {
-		if (!$isSignedIn) {
+		if (ctx.isLoaded && !ctx.user) {
 			goto('/');
 		}
 	});

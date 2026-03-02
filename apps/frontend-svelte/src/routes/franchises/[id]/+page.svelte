@@ -2,11 +2,13 @@
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { isSignedIn } from '$lib/stores/auth';
+	import { useClerkContext } from 'svelte-clerk';
 	import { toast } from '$lib/stores/toast';
 	import { getFranchise, updateFranchise, deleteFranchise } from '$lib/api';
 	import { BRAZILIAN_STATES, FRANCHISE_STATUSES } from '@franchise/shared';
-	import type { UpdateFranchiseDTO, FranchiseStatus } from '@franchise/shared';
+	import type { UpdateFranchiseDTO } from '@franchise/shared';
+
+	const ctx = useClerkContext();
 
 	let loading = $state(true);
 	let saving = $state(false);
@@ -24,7 +26,7 @@
 	});
 
 	$effect(() => {
-		if (!$isSignedIn) {
+		if (ctx.isLoaded && !ctx.user) {
 			goto('/');
 		}
 	});
