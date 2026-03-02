@@ -7,11 +7,14 @@ import type {
 	ApiErrorResponse
 } from '@franchise/shared';
 const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+let cachedToken: string | null = null;
 
 async function getToken(): Promise<string | null> {
+	if (cachedToken) return cachedToken;
 	const clerk = (window as any).Clerk;
 	if (!clerk?.session) return null;
-	return clerk.session.getToken();
+	cachedToken = await clerk.session.getToken();
+	return cachedToken;
 }
 
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {

@@ -150,7 +150,7 @@ function handleUpdateFranchise(req: Request, res: Response): void {
     body.name ?? existing.name,
     body.ownerName ?? existing.owner_name,
     body.email ?? existing.email,
-    body.phone ?? existing.phone,
+    body.phone || existing.phone,
     body.address ?? existing.address,
     body.city ?? existing.city,
     body.state ?? existing.state,

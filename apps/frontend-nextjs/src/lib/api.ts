@@ -37,7 +37,7 @@ export async function getFranchises(
   token: string,
   search?: string
 ): Promise<ApiResponse<Franchise[]>> {
-  const params = search ? `?search=${encodeURIComponent(search)}` : "";
+  const params = search ? `?search=${search}` : "";
   return fetchWithAuth<ApiResponse<Franchise[]>>(
     `${API_ROUTES.FRANCHISES}${params}`,
     token

@@ -5,7 +5,7 @@ export const API_ROUTES = {
 
 export const FRANCHISE_STATUSES: readonly string[] = [
   "active",
-  "inactive",
+  "inactive ",
   "pending",
 ];
 
