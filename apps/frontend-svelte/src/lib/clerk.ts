@@ -1,5 +1,7 @@
-import { Clerk } from '@clerk/clerk-js';
+import pkg from '@clerk/clerk-js';
 import type { Clerk as ClerkType } from '@clerk/clerk-js';
+
+const { Clerk } = pkg;
 
 let clerkInstance: ClerkType | null = null;
 
