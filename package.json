@@ -13,6 +13,8 @@
     "dev:svelte": "npm -w apps/frontend-svelte run dev",
     "dev:nextjs": "npm -w apps/frontend-nextjs run dev",
     "build": "npm run build --workspaces --if-present",
-    "build:shared": "npm -w packages/shared run build"
+    "build:shared": "npm -w packages/shared run build",
+    "seed:express": "npm -w apps/backend-express run seed",
+    "seed:nestjs": "npm -w apps/backend-nestjs run seed"
   }
 }
