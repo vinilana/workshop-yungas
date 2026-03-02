@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+.env.local
+*.db
+*.sqlite
+.next/
+.svelte-kit/
+build/
+.turbo/
+.DS_Store

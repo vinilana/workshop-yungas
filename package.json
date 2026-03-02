@@ -1,0 +1,18 @@
+{
+  "name": "franchise-manager",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Monorepo - Franchise Management MVP",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:express": "npm -w apps/backend-express run dev",
+    "dev:nestjs": "npm -w apps/backend-nestjs run dev",
+    "dev:svelte": "npm -w apps/frontend-svelte run dev",
+    "dev:nextjs": "npm -w apps/frontend-nextjs run dev",
+    "build": "npm run build --workspaces --if-present",
+    "build:shared": "npm -w packages/shared run build"
+  }
+}
